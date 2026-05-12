@@ -3,7 +3,13 @@ import { createContext, useState, useEffect } from "react";
 const GameContext = createContext();
 
 export function GameProvider({ children }) {
-    const [trendingGames, setTrendingGames] = useState([]);
+    const [trendingGames, setTrendingGames] = useState([
+        {
+            id: 1,
+            background_image: "https://via.placeholder.com/1200x400",
+            name: "Loading..."
+        }
+    ]);
     const [randomGames, setRandomGames] = useState([]);
     const [futureGames, setFutureGames] = useState([]);
     const [exploreGames, setExploreGames] = useState([]);
