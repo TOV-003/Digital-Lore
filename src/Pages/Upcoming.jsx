@@ -6,8 +6,8 @@ import { GameContext } from "../Context/GameContext.jsx";
 
 export default function Upcoming() {
 
-    const { upcomingGames, setExplorePage, setGenre, genre, setUpcomingGames, setSort, sort } = useContext(GameContext);
-    console.log("Explore Games in Explore:", upcomingGames);
+    const { upcomingGames, setExplorePage, setGenre, genre, setUpcomingGames, setSort } = useContext(GameContext);
+    console.log("Upcoming Games in Upcoming:", upcomingGames);
 
     const genres = [
         { name: "Action", slug: "action" },
@@ -21,11 +21,6 @@ export default function Upcoming() {
         { name: "Sports", slug: "sports" },
         { name: "Arcade", slug: "arcade" },
         { name: "Family", slug: "family" },
-    ];
-
-    const sortOptions = [
-        { name: "Release Date", slug: "-released" },
-        { name: "Hype", slug: "-rating" },
     ];
 
     return (
@@ -60,36 +55,6 @@ export default function Upcoming() {
                         }}
                     >
                         All Games
-                    </div>
-                </div>
-                <h2 className="md:text-3xl text-xl font-bold text-white">Sort:</h2>
-                <div className="flex lg:flex-row flex-wrap lg:px-60 lg:py-5 p-5 justify-center w-full gap-2.5 lg:gap-6">
-                    {sortOptions.map((g) => (
-                        <div
-                            key={g.slug}
-                            className={`flex items-center justify-center px-2.5 py-1 border border-white rounded-lg cursor-pointer hover:bg-digilore-secondary text-white hover:text-purple-950 font-bold transition-colors ${sort === g.slug ? "bg-digilore-secondary text-purple-950" : ""
-                                }`}
-                            onClick={() => {
-                                setUpcomingGames([]);
-                                setExplorePage(1);
-                                setGenre((prev) => prev);
-                                setSort(g.slug);
-                            }}
-                        >
-                            {g.name}
-                        </div>
-                    ))}
-                    <div
-                        className={`flex items-center justify-center px-2.5 py-1 border border-white rounded-lg cursor-pointer hover:bg-digilore-secondary text-white hover:text-purple-950 font-bold transition-colors ${sort === "-added" ? "bg-digilore-secondary text-purple-950" : ""
-                            }`}
-                        onClick={() => {
-                            setUpcomingGames([]);
-                            setExplorePage(1);
-                            setGenre((prev) => prev);
-                            setSort("-added");
-                        }}
-                    >
-                        No Sorting
                     </div>
                 </div>
             </div>
