@@ -92,7 +92,7 @@ export default function Home() {
                 </div>
             </div>
             <div className="p-4 flex flex-col items-center justify-center gap-12">
-                <h2 className="text-4xl font-bold text-white mb-4">Random Games</h2>
+                <h2 className="text-4xl font-bold text-white mb-4">Explore</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                     {randomGames && splitRandom ? randomGames.map((el) => (
                         <div key={el.id}>
