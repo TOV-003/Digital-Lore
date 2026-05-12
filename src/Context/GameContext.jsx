@@ -185,7 +185,7 @@ export function GameProvider({ children }) {
     }, [apiKey, explorePage, genre, sort]);
 
     return (
-        <GameContext.Provider value={{ trendingGames, randomGames, futureGames, exploreGames, setExploreGames, setExplorePage, genre, setGenre, sort, setSort, upcomingGames, setUpcomingGames }}>{children}</GameContext.Provider>
+        <GameContext.Provider value={{ apiKey, trendingGames, randomGames, futureGames, exploreGames, setExploreGames, setExplorePage, genre, setGenre, sort, setSort, upcomingGames, setUpcomingGames }}>{children}</GameContext.Provider>
     )
 }
 
