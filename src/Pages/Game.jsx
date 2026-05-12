@@ -78,12 +78,12 @@ export default function Game() {
                     <img src={details?.background_image} alt="" className="rounded-lg w-xl" />
                     <div className="flex flex-col gap-4">
                         <h1 className="text-4xl font-bold">{details?.name}</h1>
-                        <h2 className="text-2xl md:text-xl"><span className="font-bold">Developer:</span> {details?.developers[0].name}</h2>
-                        <h2 className="text-2xl md:text-xl"><span className="font-bold">Publisher:</span> {details?.publishers[0].name}</h2>
+                        <h2 className="text-2xl md:text-xl"><span className="font-bold">Developer:</span> {details?.developers.length > 0 ? details?.developers[0].name : "N/A"}</h2>
+                        <h2 className="text-2xl md:text-xl"><span className="font-bold">Publisher:</span> {details?.publishers.length > 0 ? details?.publishers[0].name : "N/A"}</h2>
                         <h2 className="text-2xl md:text-xl"><span className="font-bold">Platforms:</span> {details?.platforms?.map((p) => p.platform.name).join(", ")}</h2>
                         <h2 className="text-2xl md:text-xl"><span className="font-bold">Released:</span> {details?.released ? details.released : "Upcoming"}</h2>
-                        <h2 className="text-2xl md:text-xl"><span className="font-bold">Game Type:</span> {details?.tags[0]?.name}</h2>
-                        <h2 className="text-2xl md:text-xl"><span className="font-bold">Genre:</span> {details?.genres[0]?.name}</h2>
+                        <h2 className="text-2xl md:text-xl"><span className="font-bold">Game Type:</span> {details?.tags.length > 0 ? details?.tags[0]?.name : "N/A"}</h2>
+                        <h2 className="text-2xl md:text-xl"><span className="font-bold">Genre:</span> {details?.genres.length > 0 ? details?.genres[0]?.name : "N/A"}</h2>
                         <h2 className="text-2xl md:text-xl"><span className="font-bold">Description:</span> {details?.description_raw}</h2>
                         <h2 className="text-2xl md:text-xl">
                             {details?.metacritic ? <><span className="font-bold">Metacritic:</span> <span className={`text-4xl font-bold ${details?.metacritic >= 70 ? 'text-green-500' : details?.metacritic >= 40 ? 'text-yellow-500' : 'text-red-500'} `}>{details?.metacritic}</span></> : <><span className="font-bold">Rating:</span> <span className={`text-4xl font-bold ${details?.rating >= 4 ? 'text-green-500' : details?.rating >= 2 ? 'text-yellow-500' : 'text-red-500'} `}>{details?.rating}</span></>}

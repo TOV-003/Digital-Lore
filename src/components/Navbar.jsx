@@ -1,9 +1,12 @@
 import { Link, NavLink } from "react-router-dom"
+import { useState } from "react"
 
 
 export default function Navbar() {
+    const [searchVisible, setSearchVisible] = useState(false);
     return (
         <nav className="bg-digilore-primary text-white p-4 border-b border-white flex flex-col items-center md:flex-row md:justify-between gap-4">
+            <div className="bg-digilore-primary border border-white rounded-md flex flex-col w-80"></div>
             <div className="flex flex-col md:flex-row gap-4 md:gap-2.5 items-center w-full md:w-auto">
                 <Link to="/"><h1 className="text-xl font-bold">TITLE STACK</h1></Link>
 
