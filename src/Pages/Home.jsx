@@ -11,8 +11,9 @@ export default function Home() {
     const [split, setSplit] = useState(false);
     const [splitRandom, setSplitRandom] = useState(false);
     const { trendingGames, randomGames, futureGames } = useContext(GameContext);
-    const isFirstRender = useRef(true);
     console.log("Trending Games in Home:", trendingGames);
+    const isFirstRender = useRef(true);
+
 
 
     useEffect(() => {
