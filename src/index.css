@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Sometype+Mono:ital,wght@0,400..700;1,400..700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-digilore: 'Sometype Mono', 'ui-sans-serif', 'system-ui';
+  --color-digilore-primary: #3D0048;
+  --color-digilore-secondary: #EC80FF;
+}
+
+body {
+  background-color: #3D0048;
+  font-family: var(--font-digilore);
+  min-height: 100vh;
+  padding: 10px;
+}
