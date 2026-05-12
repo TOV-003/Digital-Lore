@@ -88,13 +88,18 @@ export function GameProvider({ children }) {
                     const rawdata = await response.json();
                     const data = rawdata.results.filter(game =>
                         game.background_image !== null && game.background_image !== ""
-                    );;
+                    );
+
+
 
                     setExploreGames((prev) => {
                         const existingIds = new Set(prev.map(g => g.id));
                         const newGames = data.filter(g => !existingIds.has(g.id));
                         return [...prev, ...newGames];
                     });
+
+
+
                 } catch (err) {
                     console.error("Fetch failed", err);
                 }
@@ -109,11 +114,12 @@ export function GameProvider({ children }) {
                         game.background_image !== null && game.background_image !== ""
                     );
 
+
                     setExploreGames((prev) => {
                         const existingIds = new Set(prev.map(g => g.id));
                         const newGames = data.filter(g => !existingIds.has(g.id));
                         return [...prev, ...newGames];
-                    });
+                    });;
                 } catch (err) {
                     console.error("Fetch failed", err);
                 }

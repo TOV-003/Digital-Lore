@@ -24,8 +24,6 @@ export default function Explore() {
     ];
 
     const sortOptions = [
-        { name: "A -> Z", slug: "name" },
-        { name: "Z -> A", slug: "-name" },
         { name: "Release Date", slug: "-released" },
         { name: "Rating", slug: "-rating" },
         { name: "Metacritic", slug: "-metacritic" },
@@ -33,8 +31,9 @@ export default function Explore() {
 
     return (
         <Layout>
-            <div className="flex flex-col items-center justify-center h-full gap-12">
-                <h1 className="md:text-6xl text-3xl font-bold text-white">Explore</h1>
+            <div className="flex flex-col items-center justify-center h-full gap-2">
+                <h1 className="md:text-6xl text-3xl font-bold text-white md:py-4">Explore</h1>
+                <h2 className="md:text-3xl text-xl font-bold text-white">Genre:</h2>
                 <div className="flex lg:flex-row flex-wrap lg:px-20 lg:py-5 p-5 justify-center lg:justify-evenly w-full gap-2.5 lg:gap-auto">
                     {genres.map((g) => (
                         <div
@@ -64,7 +63,8 @@ export default function Explore() {
                         All Games
                     </div>
                 </div>
-                <div className="flex lg:flex-row flex-wrap lg:px-20 lg:py-5 p-5 justify-center lg:justify-evenly w-full gap-2.5 lg:gap-auto">
+                <h2 className="md:text-3xl text-xl font-bold text-white">Sort:</h2>
+                <div className="flex lg:flex-row flex-wrap lg:px-60 lg:py-5 p-5 justify-center w-full gap-2.5 lg:gap-6">
                     {sortOptions.map((g) => (
                         <div
                             key={g.slug}
