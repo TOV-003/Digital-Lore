@@ -1,16 +1,21 @@
-# React + Vite
+### Project Description: Digital Lore
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Digital Lore** is a high-performance web application designed for comprehensive video game discovery and database exploration. Built with **React** and **Tailwind CSS**, the platform interfaces with the **RAWG.io API** to provide real-time access to a massive library of gaming data.
 
-Currently, two official plugins are available:
+The application serves as a central hub for gamers to track industry trends, upcoming releases, and historical archives. It features a sophisticated filtering system that allows users to navigate through dozens of genres and sort results by critical metrics such as Metacritic scores, user ratings, and release timelines.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+### Key Capabilities
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+* **Multidimensional Discovery**: Separate data streams for trending titles, future releases, and random discovery to ensure a diverse user experience.
+* **Granular Filtering**: Deep-link integration with the RAWG slug system for precise genre-based results.
+* **Dynamic Sorting**: Real-time re-ordering of data based on popularity, alphabetical order, or database updates.
+* **State-Synchronized Pagination**: An optimized infinite loading system that maintains filter and sort integrity across multiple pages of data.
+* **Global Context Architecture**: A centralized state management system that prevents redundant API calls and ensures data consistency throughout the application lifecycle.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Technical Architecture
+
+The project is architected as a Single Page Application (SPA) using **Vite** for rapid development and optimized production builds. It utilizes the **React Context API** for global state management, ensuring that user preferences—such as selected genres or sort orders—persist across navigation. The styling is handled via a utility-first approach with **Tailwind CSS**, allowing for a responsive, dark-themed aesthetic that aligns with modern gaming UI standards. Deployment is optimized for **Vercel**, including specialized routing configurations for SPA stability.
