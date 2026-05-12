@@ -1,11 +1,12 @@
-import { Outlet, ScrollRestoration } from 'react-router-dom'
-import ScrollUp from './components/ScrollUp'
+import { Outlet } from 'react-router-dom'
+import ScrollToTop from './components/ScrollToTop.jsx';
+
+
 function App() {
 
   return (
     <>
-      <ScrollRestoration />
-      <ScrollUp />
+      <ScrollToTop />
       <Outlet />
     </>
   )
