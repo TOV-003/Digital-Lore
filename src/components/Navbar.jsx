@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link, NavLink } from "react-router-dom"
 
 
 export default function Navbar() {
@@ -18,9 +18,9 @@ export default function Navbar() {
             </div>
 
             <div className="flex flex-row gap-4 md:gap-6 md:items-center">
-                <Link to="/" className="hover:text-gray-400 font-bold text-xl">HOME</Link>
-                <Link to="/explore" className="hover:text-gray-400 font-bold text-xl">EXPLORE</Link>
-                <Link to="/upcoming" className="hover:text-gray-400 font-bold text-xl">UPCOMING</Link>
+                <NavLink to="/" className={({ isActive }) => isActive ? "text-digilore-secondary font-bold text-xl" : "text-white hover:text-digilore-secondary font-bold text-xl"}>HOME</NavLink>
+                <NavLink to="/explore" className={({ isActive }) => isActive ? "text-digilore-secondary font-bold text-xl" : "text-white hover:text-digilore-secondary font-bold text-xl"}>EXPLORE</NavLink>
+                <NavLink to="/upcoming" className={({ isActive }) => isActive ? "text-digilore-secondary font-bold text-xl" : "text-white hover:text-digilore-secondary font-bold text-xl"}>UPCOMING</NavLink>
             </div>
         </nav>
     );

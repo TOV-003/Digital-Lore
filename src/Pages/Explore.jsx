@@ -24,7 +24,6 @@ export default function Explore() {
     ];
 
     const sortOptions = [
-        { name: "Recently Added", slug: "-added" },
         { name: "A -> Z", slug: "name" },
         { name: "Z -> A", slug: "-name" },
         { name: "Release Date", slug: "-released" },
@@ -59,7 +58,7 @@ export default function Explore() {
                             setExploreGames([]);
                             setExplorePage(1);
                             setGenre("");
-                            setSort("added");
+                            setSort("-added");
                         }}
                     >
                         All Games
@@ -72,8 +71,8 @@ export default function Explore() {
                             className={`flex items-center justify-center px-2.5 py-1 border border-white rounded-lg cursor-pointer hover:bg-digilore-secondary text-white hover:text-purple-950 font-bold transition-colors ${sort === g.slug ? "bg-digilore-secondary text-purple-950" : ""
                                 }`}
                             onClick={() => {
-                                setExploreGames((prev) => prev);
-                                setExplorePage((prev) => prev);
+                                setExploreGames([]);
+                                setExplorePage(1);
                                 setGenre((prev) => prev);
                                 setSort(g.slug);
                             }}
@@ -82,16 +81,16 @@ export default function Explore() {
                         </div>
                     ))}
                     <div
-                        className={`flex items-center justify-center px-2.5 py-1 border border-white rounded-lg cursor-pointer hover:bg-digilore-secondary text-white hover:text-purple-950 font-bold transition-colors ${sort === "" ? "bg-digilore-secondary text-purple-950" : ""
+                        className={`flex items-center justify-center px-2.5 py-1 border border-white rounded-lg cursor-pointer hover:bg-digilore-secondary text-white hover:text-purple-950 font-bold transition-colors ${sort === "-added" ? "bg-digilore-secondary text-purple-950" : ""
                             }`}
                         onClick={() => {
-                            setExploreGames((prev) => prev);
-                            setExplorePage((prev) => prev);
+                            setExploreGames([]);
+                            setExplorePage(1);
                             setGenre((prev) => prev);
-                            setSort("added");
+                            setSort("-added");
                         }}
                     >
-                        All Games
+                        No Sorting
                     </div>
                 </div>
             </div>

@@ -7,9 +7,10 @@ export function GameProvider({ children }) {
     const [randomGames, setRandomGames] = useState([]);
     const [futureGames, setFutureGames] = useState([]);
     const [exploreGames, setExploreGames] = useState([]);
+    const [upcomingGames, setUpcomingGames] = useState([]);
     const [explorePage, setExplorePage] = useState(1);
     const [genre, setGenre] = useState("");
-    const [sort, setSort] = useState("added");
+    const [sort, setSort] = useState("-added");
     const apiKey = import.meta.env.VITE_RAWG_API_KEY;
 
 
@@ -84,11 +85,14 @@ export function GameProvider({ children }) {
                     const response = await fetch(
                         `https://api.rawg.io/api/games?key=${apiKey}&genres=${genre}&page=${explorePage}&page_size=20&ordering=${sort}`
                     );
-                    const data = await response.json();
+                    const rawdata = await response.json();
+                    const data = rawdata.results.filter(game =>
+                        game.background_image !== null && game.background_image !== ""
+                    );;
 
                     setExploreGames((prev) => {
                         const existingIds = new Set(prev.map(g => g.id));
-                        const newGames = data.results.filter(g => !existingIds.has(g.id));
+                        const newGames = data.filter(g => !existingIds.has(g.id));
                         return [...prev, ...newGames];
                     });
                 } catch (err) {
@@ -100,11 +104,14 @@ export function GameProvider({ children }) {
                     const response = await fetch(
                         `https://api.rawg.io/api/games?key=${apiKey}&page=${explorePage}&page_size=20&ordering=${sort}`
                     );
-                    const data = await response.json();
+                    const rawdata = await response.json();
+                    const data = rawdata.results.filter(game =>
+                        game.background_image !== null && game.background_image !== ""
+                    );
 
                     setExploreGames((prev) => {
                         const existingIds = new Set(prev.map(g => g.id));
-                        const newGames = data.results.filter(g => !existingIds.has(g.id));
+                        const newGames = data.filter(g => !existingIds.has(g.id));
                         return [...prev, ...newGames];
                     });
                 } catch (err) {
@@ -116,8 +123,63 @@ export function GameProvider({ children }) {
         loadExploreGames();
     }, [apiKey, explorePage, genre, sort]);
 
+    useEffect(() => {
+        async function loadUpcomingGames() {
+            if (!apiKey) return;
+
+            if (genre) {
+                try {
+                    const today = new Date();
+                    const sixMonthsLater = new Date();
+                    sixMonthsLater.setMonth(today.getMonth() + 12);
+
+                    const response = await fetch(
+                        `https://api.rawg.io/api/games?key=${apiKey}&dates=${today.toISOString().split("T")[0]},${sixMonthsLater.toISOString().split("T")[0]}&genres=${genre}&page=${explorePage}&page_size=20&ordering=${sort}`
+                    );
+                    const rawdata = await response.json();
+                    const data = rawdata.results.filter(game =>
+                        game.background_image !== null && game.background_image !== ""
+                    );
+
+                    setUpcomingGames((prev) => {
+                        const existingIds = new Set(prev.map(g => g.id));
+                        const newGames = data.filter(g => !existingIds.has(g.id));
+                        return [...prev, ...newGames];
+                    });
+                } catch (err) {
+                    console.error("Fetch failed", err);
+                }
+            }
+            else {
+                try {
+                    const today = new Date();
+                    const sixMonthsLater = new Date();
+                    sixMonthsLater.setMonth(today.getMonth() + 12);
+
+                    const response = await fetch(
+                        `https://api.rawg.io/api/games?key=${apiKey}&dates=${today.toISOString().split("T")[0]},${sixMonthsLater.toISOString().split("T")[0]}&page=${explorePage}&page_size=20&ordering=${sort}`
+                    );
+                    const rawdata = await response.json();
+                    const data = rawdata.results.filter(game =>
+                        game.background_image !== null && game.background_image !== ""
+                    );
+
+                    setUpcomingGames((prev) => {
+                        const existingIds = new Set(prev.map(g => g.id));
+                        const newGames = data.filter(g => !existingIds.has(g.id));
+                        return [...prev, ...newGames];
+                    });
+                } catch (err) {
+                    console.error("Fetch failed", err);
+                }
+            }
+        }
+
+        loadUpcomingGames();
+    }, [apiKey, explorePage, genre, sort]);
+
     return (
-        <GameContext.Provider value={{ trendingGames, randomGames, futureGames, exploreGames, setExploreGames, setExplorePage, genre, setGenre, sort, setSort }}>{children}</GameContext.Provider>
+        <GameContext.Provider value={{ trendingGames, randomGames, futureGames, exploreGames, setExploreGames, setExplorePage, genre, setGenre, sort, setSort, upcomingGames, setUpcomingGames }}>{children}</GameContext.Provider>
     )
 }
 
