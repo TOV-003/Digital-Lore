@@ -10,6 +10,5 @@
 body {
   background-color: #3D0048;
   font-family: var(--font-digilore);
-  min-height: 100vh;
   padding: 10px;
 }

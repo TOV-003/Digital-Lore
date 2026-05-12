@@ -1,5 +1,5 @@
 import Layout from "../components/Layout"
-import { useParams } from "react-router-dom"
+import { useParams, Link } from "react-router-dom"
 import { useContext, useEffect, useState } from "react"
 import { GameContext } from "../Context/GameContext"
 
@@ -9,6 +9,7 @@ export default function Game() {
     const [details, setDetails] = useState(null);
     const [screenshots, setScreenshots] = useState([]);
     const [trailers, setTrailers] = useState([]);
+    const [related, setRelated] = useState([]);
     const youtubeKey = import.meta.env.VITE_YOUTUBE_API_KEY;
 
     useEffect(() => {
@@ -71,6 +72,39 @@ export default function Game() {
     }, [details, youtubeKey]);
 
 
+    useEffect(() => {
+        async function fetchRelatedGames() {
+            if (!id || !apiKey || !details) return;
+
+            try {
+                console.log("Fetching related games for ID:", id);
+
+                // Use genre-based search (works for free API accounts)
+                if (details?.genres?.length > 0) {
+                    const genreId = details.genres[0].id;
+                    console.log("Genre ID:", genreId);
+
+                    const genreRes = await fetch(
+                        `https://api.rawg.io/api/games?key=${apiKey}&genres=${genreId}&exclude=${id}&page_size=10`
+                    );
+                    const genreData = await genreRes.json();
+                    console.log("Genre-based games response:", genreData);
+
+                    if (genreData.results && genreData.results.length > 0) {
+                        console.log("Setting related games:", genreData.results.length);
+                        setRelated(genreData.results);
+                    }
+                } else {
+                    console.log("No genres available");
+                }
+            } catch (err) {
+                console.error("Failed to fetch related games", err);
+            }
+        }
+
+        fetchRelatedGames();
+    }, [id, apiKey, details]);
+
     return (
         <Layout>
             <div className="flex flex-col items-center justify-center w-full gap-6 text-white text-center lg:text-start">
@@ -120,6 +154,29 @@ export default function Game() {
                                 </p>
                             </div>
                         ))}
+                    </div>
+                </div>
+                <div className="lg:w-[70%] w-full p-4">
+                    <h2 className="text-2xl font-bold mb-4">You Might Also Like</h2>
+                    <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                        {related && related.length > 0 ? (
+                            related.map((el) => (
+                                <Link
+                                    to={`/game/${el.id}`}
+                                    key={el.id}
+                                    className="flex flex-col gap-2 cursor-pointer hover:scale-105 transition-transform"
+                                >
+                                    <img
+                                        src={el.background_image}
+                                        className="rounded-lg aspect-video object-cover"
+                                        alt={el.name}
+                                    />
+                                    <p className="text-sm font-medium truncate">{el.name}</p>
+                                </Link>
+                            ))
+                        ) : (
+                            <p className="text-gray-400">Loading related games...</p>
+                        )}
                     </div>
                 </div>
             </div>
