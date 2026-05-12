@@ -1,7 +1,7 @@
 
 import { Link } from "react-router-dom";
 import Layout from "../components/Layout"
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext, useRef } from "react";
 import { GameContext } from "../Context/GameContext.jsx";
 
 export default function Home() {
@@ -11,11 +11,17 @@ export default function Home() {
     const [split, setSplit] = useState(false);
     const [splitRandom, setSplitRandom] = useState(false);
     const { trendingGames, randomGames, futureGames } = useContext(GameContext);
+    const isFirstRender = useRef(true);
     console.log("Trending Games in Home:", trendingGames);
 
 
     useEffect(() => {
         if (trendingGames.length === 0) return;
+        if (isFirstRender.current) {
+            setCurrentImage(trendingGames[0].background_image);
+            setCurrentImageId(trendingGames[0].id);
+            isFirstRender.current = false;
+        }
 
         const interval = setInterval(() => {
             try {
