@@ -1,6 +1,6 @@
-### Project Description: Digital Lore
+### Project Description: Title Stack
 
-**Digital Lore** is a high-performance web application designed for comprehensive video game discovery and database exploration. Built with **React** and **Tailwind CSS**, the platform interfaces with the **RAWG.io API** to provide real-time access to a massive library of gaming data.
+**Title Stack** is a high-performance web application designed for comprehensive video game discovery and database exploration. Built with **React** and **Tailwind CSS**, the platform interfaces with the **RAWG.io API** to provide real-time access to a massive library of gaming data.
 
 The application serves as a central hub for gamers to track industry trends, upcoming releases, and historical archives. It features a sophisticated filtering system that allows users to navigate through dozens of genres and sort results by critical metrics such as Metacritic scores, user ratings, and release timelines.
 
