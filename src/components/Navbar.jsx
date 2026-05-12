@@ -5,7 +5,7 @@ export default function Navbar() {
     return (
         <nav className="bg-digilore-primary text-white p-4 border-b border-white flex flex-col items-center md:flex-row md:justify-between gap-4">
             <div className="flex flex-col md:flex-row gap-4 md:gap-2.5 items-center w-full md:w-auto">
-                <Link to="/"><h1 className="text-xl font-bold">DIGITAL LORE</h1></Link>
+                <Link to="/"><h1 className="text-xl font-bold">TITLE STACK</h1></Link>
 
                 <div className="border border-white p-2.5 rounded-lg w-full md:w-xl text-sm flex gap-2">
                     <img src="/Search.svg" alt="Search" />
